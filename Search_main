@@ -1,0 +1,45 @@
+#乱数を使って正解を探す
+import random
+
+cnt=0
+flag=0
+while(flag==0):
+  cnt+=1
+  for i in range(0,9,1):
+    for j in range(0,9,1):
+      if(len(str(candidate[i][j]))!=1):
+        problem[i][j]=candidate[i][j][random.randrange(0,len(candidate[i][j]))]
+
+  #横の合計が正しいかの判別
+  correct_cnt=0
+  for i in range(0,9,1):
+    sum=0
+    for j in range(0,9,1):
+      sum+=problem[i][j]
+    if(sum==45):
+      correct_cnt+=1
+    else:
+      break
+
+  #縦の合計が正しいかの判別
+  for i in range(0,9,1):
+    sum=0
+    for j in range(0,9,1):
+      sum+=problem[j][i]
+    if(sum==45):
+      correct_cnt+=1
+    else:
+      break
+  
+  #正解の判断と進捗の表示
+  if(correct_cnt==18):
+    flag=1
+  elif(correct_cnt>13):#13以上なら表示（動いているかの確認）
+    print(cnt,correct_cnt)
+
+#正解を表示
+print()
+print("try:",cnt)
+for i in range(0,9,1):
+  print(problem[i])
+  
