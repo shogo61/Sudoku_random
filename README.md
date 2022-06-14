@@ -3,7 +3,7 @@
 
 ・言語はPythonです。
 
-・colaboratoryとanacondaで動作確認をしています。
+・colaboratoryとjupyter-labで動作確認をしています。
 
 ・より良いアルゴリズムを考えて随時更新していきます。
 
