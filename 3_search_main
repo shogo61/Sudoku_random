@@ -19,9 +19,9 @@ while(flag==0):
     for j in range(0,9,1):
       check_nums.append(problem[i][j])
     for j in range(0,9,1):
-      if(j+1 in check_nums):
+      if(j+1 in check_nums): # j+1がcheck_numsに入っていればcheck_cnt+1
         check_cnt+=1
-    if(check_cnt==9):
+    if(check_cnt==9): # check_numsに全部入っていればcorrect_cnt+1
       correct_cnt+=1
     check_nums.clear()
 
@@ -89,8 +89,9 @@ while(flag==0):
   # 動いているかの確認
   if(cnt%10000==0):
     print("*",end=" ")
-    print(correct_cnt)
-
+  elif(cnt%1000000==0):
+    print()
+    
 #正解を表示
 print()
 print("try:",cnt)
