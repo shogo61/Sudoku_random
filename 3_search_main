@@ -34,8 +34,10 @@ while(flag==0):
   #正解の判断と進捗の表示
   if(correct_cnt==18):
     flag=1
-  elif(correct_cnt>13):#13以上なら表示（動いているかの確認）
-    print(cnt,correct_cnt)
+  
+  # 動いているかの確認
+  if(cnt%10000==0):
+    print("*",end="")
 
 #正解を表示
 print()
