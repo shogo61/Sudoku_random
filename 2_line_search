@@ -47,4 +47,4 @@ for i in range(0,9,1):
 print()
 print("probability:",pro)
 
-# ↑だけで答えが出る問題もある
+# ここまでだけで答えが出る問題もある
