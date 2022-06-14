@@ -1,43 +1,95 @@
-#乱数を使って正解を探す
 import random
 
+#乱数を使って正解を探す
 cnt=0
 flag=0
 while(flag==0):
   cnt+=1
+  # 0からlen(candidate[i][j])までの乱数を生成してproblemに当てはめる
   for i in range(0,9,1):
     for j in range(0,9,1):
       if(len(str(candidate[i][j]))!=1):
         problem[i][j]=candidate[i][j][random.randrange(0,len(candidate[i][j]))]
-
-  #横の合計が正しいかの判別
   correct_cnt=0
+    
+  #横の合計が正しいかの判定
+  check_nums=[]
   for i in range(0,9,1):
-    sum=0
+    check_cnt=0
     for j in range(0,9,1):
-      sum+=problem[i][j]
-    if(sum==45):
+      check_nums.append(problem[i][j])
+    for j in range(0,9,1):
+      if(j+1 in check_nums):
+        check_cnt+=1
+    if(check_cnt==9):
       correct_cnt+=1
-    else:
-      break
+    check_nums.clear()
 
-  #縦の合計が正しいかの判別
+  #縦の合計が正しいかの判定
+  check_nums=[]
   for i in range(0,9,1):
-    sum=0
+    check_cnt=0
     for j in range(0,9,1):
-      sum+=problem[j][i]
-    if(sum==45):
+      check_nums.append(problem[j][i])
+    for j in range(0,9,1):
+      if(j+1 in check_nums):
+        check_cnt+=1
+    if(check_cnt==9):
       correct_cnt+=1
-    else:
-      break
-  
+    check_nums.clear()
+
+  # ブロックの合計が正しいかの判定
+  check_cnt=0
+  while(check_cnt<3):
+    start_i=0
+    stop_i=3
+    sumb1=[]
+    sumb2=[]
+    sumb3=[]
+    for i in range(start_i,stop_i,1):
+      for j in range(0,3,1):
+        sumb1.append(problem[i][j])
+      for j in range(3,6,1):
+        sumb2.append(problem[i][j])
+      for j in range(6,9,1):
+        sumb3.append(problem[i][j])
+
+    bcheck_cnt=0
+    for j in range(0,9,1):
+      if(j+1 in sumb1):
+        bcheck_cnt+=1
+      if(bcheck_cnt==9):
+        correct_cnt+=1
+
+    bcheck_cnt=0
+    for j in range(0,9,1):
+      if(j+1 in sumb2):
+        bcheck_cnt+=1
+      if(bcheck_cnt==9):
+        correct_cnt+=1
+      
+    bcheck_cnt=0
+    for j in range(0,9,1):
+      if(j+1 in sumb3):
+        bcheck_cnt+=1
+      if(bcheck_cnt==9):
+        correct_cnt+=1
+      
+    sumb1.clear()
+    sumb2.clear()
+    sumb3.clear()
+    start_i+=3
+    stop_i+=3
+    check_cnt+=1
+
   #正解の判断と進捗の表示
-  if(correct_cnt==18):
+  if(correct_cnt==27):
     flag=1
   
   # 動いているかの確認
   if(cnt%10000==0):
-    print("*",end="")
+    print("*",end=" ")
+    print(correct_cnt)
 
 #正解を表示
 print()
