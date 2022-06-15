@@ -3,6 +3,8 @@ import random
 #乱数を使って正解を探す
 cnt=0
 flag=0
+print("10000回ごとのcorrect_cnt　27になれば正解です")
+print()
 while(flag==0):
   cnt+=1
   # 0からlen(candidate[i][j])までの乱数を生成してproblemに当てはめる
@@ -19,9 +21,9 @@ while(flag==0):
     for j in range(0,9,1):
       check_nums.append(problem[i][j])
     for j in range(0,9,1):
-      if(j+1 in check_nums): # j+1がcheck_numsに入っていればcheck_cnt+1
+      if(j+1 in check_nums): # jが入っていたらcheck_cntを+1
         check_cnt+=1
-    if(check_cnt==9): # check_numsに全部入っていればcorrect_cnt+1
+    if(check_cnt==9): # 全部入っていたらcorrect_cntを+1
       correct_cnt+=1
     check_nums.clear()
 
@@ -39,8 +41,8 @@ while(flag==0):
     check_nums.clear()
 
   # ブロックの合計が正しいかの判定
-  check_cnt=0
-  while(check_cnt<3):
+  loop_cnt=0
+  while(loop_cnt<3):
     start_i=0
     stop_i=3
     sumb1=[]
@@ -54,25 +56,25 @@ while(flag==0):
       for j in range(6,9,1):
         sumb3.append(problem[i][j])
 
-    bcheck_cnt=0
+    check_cnt=0
     for j in range(0,9,1):
       if(j+1 in sumb1):
-        bcheck_cnt+=1
-      if(bcheck_cnt==9):
+        check_cnt+=1
+      if(check_cnt==9):
         correct_cnt+=1
 
-    bcheck_cnt=0
+    check_cnt=0
     for j in range(0,9,1):
       if(j+1 in sumb2):
-        bcheck_cnt+=1
-      if(bcheck_cnt==9):
+        check_cnt+=1
+      if(check_cnt==9):
         correct_cnt+=1
       
-    bcheck_cnt=0
+    check_cnt=0
     for j in range(0,9,1):
       if(j+1 in sumb3):
-        bcheck_cnt+=1
-      if(bcheck_cnt==9):
+        check_cnt+=1
+      if(check_cnt==9):
         correct_cnt+=1
       
     sumb1.clear()
@@ -80,21 +82,21 @@ while(flag==0):
     sumb3.clear()
     start_i+=3
     stop_i+=3
-    check_cnt+=1
+    loop_cnt+=1
 
-  #正解の判断と進捗の表示
-  if(correct_cnt==27):
-    flag=1
-  
   # 動いているかの確認
   if(cnt%10000==0):
-    print("*",end=" ")
-  elif(cnt%1000000==0):
+    print(correct_cnt,end=" ")
+  if(cnt%500000==0):
     print()
-    
+
+  #正解の判定
+  if(correct_cnt==27):
+    flag=1
+
+
 #正解を表示
 print()
 print("try:",cnt)
 for i in range(0,9,1):
   print(problem[i])
-  
