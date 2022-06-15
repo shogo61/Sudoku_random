@@ -1,7 +1,21 @@
 # 縦横を探索してproblem[][]を含めばcandidate[][]を更新
 
 cnt=0
-while(cnt<5):# 周り過ぎても意味がなさそう＋候補を1つに絞れていないと恩恵がない
+flag=0
+while(flag==0):# 候補を1つに絞れる限り繰り返す
+  flag=1
+
+  #途中経過の表示
+  print()
+  print("cnt",cnt)
+  # print("problem")
+  # for i in range(0,9,1):
+  #   print(problem[i])
+  # print()
+  print("candidate")
+  for i in range(0,9,1):
+    print(candidate[i])
+
   # 横の探索
   for i in range(0,9,1):
     for j in range(0,9,1):
@@ -25,18 +39,9 @@ while(cnt<5):# 周り過ぎても意味がなさそう＋候補を1つに絞れ�
         if(len(candidate[i][j])==1)and(problem[i][j]==0):
           candidate[i][j]=candidate[i][j][0]
           problem[i][j]=candidate[i][j]
+          flag=0
+  
   cnt+=1
-
-  #途中経過の表示
-  print()
-  print("cnt",cnt)
-  print("problem")
-  for i in range(0,9,1):
-    print(problem[i])
-  print()
-  print("candidate")
-  for i in range(0,9,1):
-    print(candidate[i])
 
 #確率の表示
 pro=1.0
@@ -45,6 +50,7 @@ for i in range(0,9,1):
     if(isinstance(candidate[i][j],list)):
       pro*=1/len(candidate[i][j])
 print()
+print("count",cnt)
 print("probability:",pro)
 
 # ここまでだけで答えが出る問題もある
