@@ -14,7 +14,7 @@ while(flag==0):
         problem[i][j]=candidate[i][j][random.randrange(0,len(candidate[i][j]))]
   correct_cnt=0
     
-  #横の合計が正しいかの判定
+  #横の結果が正しいかの判定
   check_nums=[]
   for i in range(0,9,1):
     check_cnt=0
@@ -27,7 +27,7 @@ while(flag==0):
       correct_cnt+=1
     check_nums.clear()
 
-  #縦の合計が正しいかの判定
+  #縦の結果が正しいかの判定
   check_nums=[]
   for i in range(0,9,1):
     check_cnt=0
@@ -40,7 +40,7 @@ while(flag==0):
       correct_cnt+=1
     check_nums.clear()
 
-  # ブロックの合計が正しいかの判定
+  # ブロックの結果が正しいかの判定
   loop_cnt=0
   while(loop_cnt<3):
     start_i=0
