@@ -10,7 +10,7 @@ while(flag==0):
   # 0からlen(candidate[i][j])までの乱数を生成してproblemに当てはめる
   for i in range(0,9,1):
     for j in range(0,9,1):
-      if(len(str(candidate[i][j]))!=1):
+      if(isinstance(candidate[i][j],list)):
         problem[i][j]=candidate[i][j][random.randrange(0,len(candidate[i][j]))]
   correct_cnt=0
     
